@@ -18,28 +18,7 @@ ContextCompat.startForegroundService(this@Main, ChatHeadService::class.java)
 Click on Show Message to start the floating widget service like Facebook messenger
 
 <br/>
-Stop ChatHead(see below pic 'LongPressing to Stop') :<br/>
-long click and move chat-head to the round on bottom
-
-
-ScreenShot
------------
-**Dragging and Bounce animation**<br/>
-![](app/src/main/assets/drag.png)
-
-<br/><br/>
-**Messenger**<br/>
-![](app/src/main/assets/messenger1.png)
-<br/>
-![](app/src/main/assets/messenger2.png)
-
-<br/><br/>
-**LongPressing to Stop**<br/>
-![](app/src/main/assets/pic_delete.png)
-
-<br/><br/>
-**landscape screenOrientation**<br/>
-![](app/src/main/assets/landscape.png)
+When chat head is long pressed then an exit view is visible to drag the widget there to stop the ChatHead :<br/>
 
 Orientation
 -----------
