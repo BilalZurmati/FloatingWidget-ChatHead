@@ -1,14 +1,17 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion '30.0.3'
+    namespace "zurmati.floating.widget"
+
+    compileSdkVersion 35
 
     defaultConfig {
         applicationId "zurmati.floating.widget"
-        minSdkVersion 14
-        targetSdkVersion 33
+        minSdkVersion 21
+        targetSdkVersion 35
     }
 
     buildTypes {
@@ -22,17 +25,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
     }
 
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+
     viewBinding {
         enabled = true
     }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation "androidx.core:core-ktx:+"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
     mavenCentral()

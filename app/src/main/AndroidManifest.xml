@@ -1,8 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="zurmati.floating.widget">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +16,6 @@
         <activity
             android:name="zurmati.floating.widget.Main"
             android:exported="true"
-            android:label="@string/app_name"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +28,11 @@
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Translucent" />
 
-        <service android:name="zurmati.floating.widget.ChatHeadService" />
+        <service
+            android:name="zurmati.floating.widget.ChatHeadService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse"
+            tools:ignore="ForegroundServicePermission" />
 
     </application>
 

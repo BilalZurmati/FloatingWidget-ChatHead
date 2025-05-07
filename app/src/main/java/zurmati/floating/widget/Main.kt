@@ -3,13 +3,13 @@ package zurmati.floating.widget
 import android.os.Bundle
 import android.content.Intent
 import android.app.AlertDialog
-import android.net.Uri
 import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import zurmati.floating.widget.databinding.MainBinding
 import java.text.SimpleDateFormat
 import java.util.*
+import androidx.core.net.toUri
 
 class Main : AppCompatActivity() {
 
@@ -54,7 +54,7 @@ class Main : AppCompatActivity() {
     private fun showChatHeadMsg() {
         val now = Date()
         val str =
-            "test by zurmati  " + SimpleDateFormat(
+            "test by Zurmati  " + SimpleDateFormat(
                 "yyyy-MM-dd HH:mm:ss",
                 Locale.getDefault()
             ).format(
@@ -84,27 +84,26 @@ class Main : AppCompatActivity() {
 
     private fun requestPermission(requestCode: Int) {
         val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
-        intent.data = Uri.parse("package:$packageName")
+        intent.data = "package:$packageName".toUri()
         startActivityForResult(intent, requestCode)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == OVERLAY_PERMISSION_REQ_CODE_CHATHEAD) {
-            if (!Utils.canDrawOverlays(this@Main)) {
-                needPermissionDialog(requestCode)
-            } else {
+        if (!Utils.canDrawOverlays(this@Main)) {
+            needPermissionDialog(requestCode)
+            return
+        }
+
+        when (requestCode) {
+            OVERLAY_PERMISSION_REQ_CODE_CHATHEAD -> {
                 startChatHead()
             }
-        } else if (requestCode == OVERLAY_PERMISSION_REQ_CODE_CHATHEAD_MSG) {
-            if (!Utils.canDrawOverlays(this@Main)) {
-                needPermissionDialog(requestCode)
-            } else {
+            OVERLAY_PERMISSION_REQ_CODE_CHATHEAD_MSG -> {
                 showChatHeadMsg()
             }
         }
     }
-
 
 
     companion object {

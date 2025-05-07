@@ -51,10 +51,8 @@ class MyDialog : Activity() {
     }
 
     companion object {
-        @JvmField
         var active = false
 
-        @JvmField
         var myDialog: Activity? = null
     }
 }
